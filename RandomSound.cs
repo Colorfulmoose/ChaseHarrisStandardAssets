@@ -83,6 +83,8 @@ public class RandomSound : MonoBehaviour
     private void PlayRandomClip()
     {
         currentClip = audioClips[(int)Random.Range(0, audioClips.Length - 1)];
-        AudioSource.PlayClipAtPoint(currentClip, location.position, volume);
+//        AudioSource.PlayClipAtPoint(currentClip, location.position, volume);      //Native Unity Implementation
+        var source = new ClipAtPointPlus();                                             //<- ClipAtPointPlus implementation
+        source.Play(currentClip, location.position, volume: volume, maxDistance: 25);   //<-
     }
 }
